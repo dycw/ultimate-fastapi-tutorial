@@ -1,1 +1,1 @@
-# `dycw-template`
+# `ultimate-fastapi-tutorial`

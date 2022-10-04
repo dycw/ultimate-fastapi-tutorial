@@ -27,10 +27,10 @@ build-backend = "hatchling.build"
 sources = ["src"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dycw_template"]
+packages = ["src/ultimate_fastapi_tutorial"]
 
 [tool.hatch.version]
-path = "src/dycw_template/__init__.py"
+path = "src/ultimate_fastapi_tutorial/__init__.py"
 
 #### isort ####################################################################
 [tool.isort]
@@ -54,7 +54,7 @@ style = [
 
 #### project ##################################################################
 [project]
-name = "dycw-template"
+name = "ultimate-fastapi-tutorial"
 dynamic = ["version"]
 readme = "README.md"
 requires-python = ">= 3.10"
@@ -113,7 +113,7 @@ reportUnusedCallResult = "error"
 addopts = [
   "-rsxX",
   "--color=auto",
-  "--cov=dycw_template",
+  "--cov=ultimate_fastapi_tutorial",
   "--cov-config=pyproject.toml",
   "--cov-report=html",
   "--strict-markers",

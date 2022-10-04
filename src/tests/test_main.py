@@ -1,4 +1,4 @@
-from dycw_template import __version__
+from ultimate_fastapi_tutorial import __version__
 
 
 def test_main() -> None:
