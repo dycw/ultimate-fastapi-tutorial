@@ -41,7 +41,10 @@ def fetch_recipe(*, recipe_id: int) -> dict[str, Any]:
     if result:
         return result[0]
     else:
-        raise HTTPException(status.HTTP_404_NOT_FOUND)
+        raise HTTPException(
+            status.HTTP_404_NOT_FOUND,
+            detail=f"Recipe with ID {recipe_id} not found",
+        )
 
 
 @api_router.get(
