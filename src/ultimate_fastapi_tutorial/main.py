@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any
 from typing import cast
 
@@ -5,12 +6,20 @@ from beartype import beartype
 from fastapi import APIRouter
 from fastapi import FastAPI
 from fastapi import HTTPException
+from fastapi import Request
+from fastapi import Response
 from fastapi import status
+from fastapi.templating import Jinja2Templates
 
 from ultimate_fastapi_tutorial.recipe_data import RECIPES
 from ultimate_fastapi_tutorial.schemas import Recipe
 from ultimate_fastapi_tutorial.schemas import RecipeCreate
 from ultimate_fastapi_tutorial.schemas import RecipeSearchResults
+
+
+TEMPLATES = Jinja2Templates(
+    directory=Path(__file__).resolve().parent.parent.joinpath("templates")
+)
 
 
 app = FastAPI(title="Recipe API", openapi_url="/openapi.json")
@@ -21,12 +30,14 @@ api_router = APIRouter()
 
 @api_router.get("/", status_code=status.HTTP_200_OK)
 @beartype
-def root() -> dict[str, Any]:
+def root(*, request: Request) -> Response:
     """
     Root Get
     """
 
-    return {"msg": "Hello, World!"}
+    return TEMPLATES.TemplateResponse(
+        "index.html", {"request": request, "recipes": RECIPES}
+    )
 
 
 @api_router.get(
