@@ -6,28 +6,7 @@ from fastapi import APIRouter
 from fastapi import FastAPI
 from fastapi import status
 
-
-RECIPES = [
-    {
-        "id": 1,
-        "label": "Chicken Vesuvio",
-        "source": "Serious Eats",
-        "url": "http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html",
-    },
-    {
-        "id": 2,
-        "label": "Chicken Paprikash",
-        "source": "No Recipes",
-        "url": "http://norecipes.com/recipe/chicken-paprikash/",
-    },
-    {
-        "id": 3,
-        "label": "Cauliflower and Tofu Curry Recipe",
-        "source": "Serious Eats",
-        "url": "http://www.seriouseats.com/recipes/2011/02/"
-        + "cauliflower-and-tofu-curry-recipe.html",
-    },
-]
+from ultimate_fastapi_tutorial.recipe_data import RECIPES
 
 
 app = FastAPI(title="Recipe API", openapi_url="/openapi.json")
