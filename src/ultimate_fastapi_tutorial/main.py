@@ -1,4 +1,5 @@
 from typing import Any
+from typing import cast
 
 from beartype import beartype
 from fastapi import APIRouter
@@ -54,6 +55,27 @@ def fetch_recipe(*, recipe_id: int) -> dict[str, Any] | None:
     result = [recipe for recipe in RECIPES if recipe["id"] == recipe_id]
     if result:
         return result[0]
+
+
+@api_router.get("/search/", status_code=status.HTTP_200_OK)
+def search_recipes(
+    *, keyword: str | None = None, max_results: int | None = 10
+) -> dict[str, Any]:
+    """
+    Search for recipes based on label keyword
+    """
+
+    if not keyword:
+        # we use Python list slicing to limit results
+        # based on the max_results query parameter
+        return {"results": RECIPES[:max_results]}
+
+    results = [
+        recipe
+        for recipe in RECIPES
+        if keyword.lower() in cast(str, recipe["label"]).lower()
+    ]
+    return {"results": results[:max_results]}
 
 
 app.include_router(api_router)
