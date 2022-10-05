@@ -5,4 +5,6 @@ local:
 deploy:
 	sudo nginx -s reload
 	sudo systemctl restart nginx.service
-	poetry run gunicorn --bind=unix:///tmp/uvicorn.sock -w 2 --forwarded-allow-ips='*' -k uvicorn.workers.UvicornWorker app.main:app
+  gunicorn --bind=unix:///tmp/uvicorn.sock --workers=2 \
+    --worker-class=uvicorn.workers.UvicornWorker --chdir=src \
+    --forwarded-allow-ips='*' ultimate_fastapi_tutorial.main:app
