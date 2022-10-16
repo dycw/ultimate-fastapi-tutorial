@@ -11,6 +11,7 @@ data_file = ".coverage/data"
 parallel = true
 
 [tool.coverage.report]
+exclude_lines = ["# pragma: no cover", "@overload"]
 fail_under = 100.0
 skip_covered = true
 skip_empty = true
@@ -60,12 +61,16 @@ readme = "README.md"
 requires-python = ">= 3.10"
 authors = [{ name = "Derek Wan", email = "d.wan@icloud.com" }]
 dependencies = [
+  "alembic >= 1.8.1",
   "beartype >= 0.11.0",
+  "dycw-utilities[inflection] >= 0.2.21",
   "fastapi >= 0.85.1",
   "gunicorn >= 20.1.0",
   "jinja2 >= 3.1.2",
   "pydantic[email] >= 1.10.2",
   "python-multipart >= 0.0.5",
+  "sqlalchemy >= 1.4.41",
+  "tenacity >= 8.1.0",
   "uvicorn >= 0.18.3",
 ]
 
